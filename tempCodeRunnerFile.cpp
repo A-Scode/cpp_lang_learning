@@ -1,3 +1,1 @@
-/*
-this is some multiline comment in the program
-*/
+->
