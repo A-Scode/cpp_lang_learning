@@ -7,8 +7,12 @@
 #include <queue>
 #include <stack>
 #include <set>
+#include <map>
 #include <iterator>
 #include <algorithm>
+#include <unordered_set>
+
+#include <bits/stdc++.h>
 
 
 #define tostr(a) #a
@@ -20,6 +24,26 @@ void show_container(std::string str ,t1 vec1){
         std::cout << i << ' ' ;
     }
     std::cout<< std::endl;
+
+}
+
+template < typename t2 = int  >
+void show_container(std::string str , std::map<t2 , t2> map1){
+    std::cout << str << " : " << std::endl ;
+    for(auto it = map1.begin() ; it != map1.end() ; it++){
+        std::cout<< "\t" << it->first << "\t" << it->second << std::endl;
+
+    }
+
+}
+
+template < typename t2 = int  >
+void show_container(std::string str , std::multimap<t2 , t2> map1){
+    std::cout << str << " : " << std::endl ;
+    for(auto it = map1.begin() ; it != map1.end() ; it++){
+        std::cout<< "\t" << it->first << "\t" << it->second << std::endl;
+
+    }
 
 }
 
@@ -390,13 +414,58 @@ int main() {
     show_container<int , std::multiset<int, std::less<int>>>("ms1" , ms1);
 
 
+    // map
+    // each element has a key value pair
+    // no two values can have same keys
+
+    std::map<int, int> mp1 = {std::pair<int, int>(5,10),
+                              std::pair<int, int>(6,12),
+                              std::pair<int, int>(5,10),
+                              {8 , 16},
+                              {9 , 18}
+                              }; // 5,10 will be inserted one time only
 
 
+    // pair return {7,14}
+    mp1.insert(std::pair<int ,int>(7,14));
+    mp1.insert({10,20});
+    mp1.insert({11 , 22});
+    mp1.insert({12 , 24});
+
+    show_container<int>("mp1" , mp1);
+
+    std::cout<< "mp1 size : " << mp1.size() << std::endl;
+    std::cout<< "mp1 max_size : " << mp1.max_size() << std::endl;
+
+    std::cout<< "mp1 10 lower_bound : " << mp1.lower_bound(10)->second << std::endl;
+    std::cout<< "mp1 10 upper_bound : " << mp1.upper_bound(10)->second << std::endl;
+
+    mp1.erase(9);// directly deleted by key
+
+    show_container<int>("mp1" , mp1);
+
+    mp1.erase(mp1.find(8));
+    show_container<int>("mp1" , mp1);
+
+    //multimap
+    // same as map and also sorted but it can hold value with multiple same keys
+    std::multimap<int,int> mmp1 = {{2,4},
+                                    {3,6},
+                                    {2,4},
+                                    {4,8},
+                                    {4,8}};
+    
+    show_container<int>("mmp1" ,mmp1);
 
 
+    std::unordered_set<std::string> us1 ={"hello" , "hii"};
+
+    us1.insert("what's up");
+
+    show_container<std::string , std::unordered_set<std::string>>("us1" , us1);
 
 
-
+    
 
      return 0;
 }
