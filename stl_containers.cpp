@@ -46,7 +46,25 @@ void show_container(std::string str , std::multimap<t2 , t2> map1){
     }
 
 }
+template < typename t2 = int  >
+void show_container(std::string str , std::unordered_map<t2 , t2> map1){
+    std::cout << str << " : " << std::endl ;
+    for(auto it = map1.begin() ; it != map1.end() ; it++){
+        std::cout<< "\t" << it->first << "\t" << it->second << std::endl;
 
+    }
+
+}
+
+template < typename t2 = int  >
+void show_container(std::string str , std::unordered_multimap<t2 , t2> map1){
+    std::cout << str << " : " << std::endl ;
+    for(auto it = map1.begin() ; it != map1.end() ; it++){
+        std::cout<< "\t" << it->first << "\t" << it->second << std::endl;
+
+    }
+
+}
 int main() {
 
 
@@ -457,6 +475,7 @@ int main() {
     
     show_container<int>("mmp1" ,mmp1);
 
+    // unordered set
 
     std::unordered_set<std::string> us1 ={"hello" , "hii"};
 
@@ -481,6 +500,7 @@ int main() {
 
     show_container<std::string , std::unordered_set<std::string>>("us1" , us1);
 
+    // unordered multiset
 
     std::unordered_multiset<std::string> ums1 ={"hello" , "hii"};
 
@@ -505,7 +525,39 @@ int main() {
 
     show_container<std::string , std::unordered_multiset<std::string>>("ums1" , ums1);
 
+    // unordered map
+
+    std::unordered_map<int , int> um1 = {{22, 2},
+    {345 , 3},
+    {645 , 23},
+    {34 , 23}
+    };
+
+    //inserting using []
+    um1[342] = 73;
+
+    show_container<int>("um1" , um1);
+
+                                                                    //access using [] operator
+    std::cout<< "first : " << um1.begin()->first << "\tsecond : " << um1[um1.begin()->first] << std::endl;
+
+
+    // unordered multimap
     
+    std::unordered_multimap<int , int> umm1 = {{22, 2},
+    {345 , 3},
+    {645 , 23},
+    {34 , 23},
+    {645 , 23}
+    };
+
+    umm1.insert({645 , 343});
+    umm1.insert(std::pair<int,int>(645 , 323));
+    show_container<int>("umm1" , umm1);
+
+                                                                    // [] operator cannot be used because multiple values for single keys
+    std::cout<< "first : " << umm1.begin()->first << "\tsecond : " << umm1.begin()->second << std::endl;
+
 
      return 0;
 }
