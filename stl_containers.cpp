@@ -461,9 +461,49 @@ int main() {
     std::unordered_set<std::string> us1 ={"hello" , "hii"};
 
     us1.insert("what's up");
+    us1.insert("hmm...");
+    us1.insert("hmm...");
+    us1.insert("hmm...");
+    us1.insert("hmm..."); //inserted only once bcoz it is set
 
     show_container<std::string , std::unordered_set<std::string>>("us1" , us1);
 
+    if(us1.find("hmm...") != us1.end()) 
+        printf( "%p\n" , us1.find("hmm...") );
+
+    std::cout<< us1.count("hmm...")  << std::endl; //used to check if elem exsists
+
+    std::cout<< "No. of buckets in us1 : " << us1.bucket_count() << std::endl;
+
+    std::cout<< "No.of elems in bucket us1.bucket(\"hmm...\") : " << us1.bucket_size(us1.bucket("hmm...")) << std::endl;
+
+    us1.erase( us1.find("hmm..."));
+
+    show_container<std::string , std::unordered_set<std::string>>("us1" , us1);
+
+
+    std::unordered_multiset<std::string> ums1 ={"hello" , "hii"};
+
+    ums1.insert("what's up");
+    ums1.insert("hmm...");
+    ums1.insert("hmm...");
+    ums1.insert("hmm...");
+    ums1.insert("hmm..."); //inserted only once bcoz it is set
+
+    show_container<std::string , std::unordered_multiset<std::string>>("ums1" , ums1);
+
+    if(ums1.find("hmm...") != ums1.end()) 
+        printf( "%p\n" , ums1.find("hmm...") );
+
+    std::cout<< ums1.count("hmm...")  << std::endl; //used to check if elem exsists
+
+    std::cout<< "No. of buckets in ums1 : " << ums1.bucket_count() << std::endl;
+
+    std::cout<< "No.of elems in bucket ums1.bucket(\"hmm...\") : " << ums1.bucket_size(ums1.bucket("hmm...")) << std::endl;
+
+    ums1.erase( ums1.find("hmm..."));
+
+    show_container<std::string , std::unordered_multiset<std::string>>("ums1" , ums1);
 
     
 
