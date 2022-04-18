@@ -1,0 +1,2 @@
+    std::cout<< "Enter text to write into file (-1 to end input) : "  << std::endl;
+
